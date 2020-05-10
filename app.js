@@ -1,11 +1,11 @@
 const players = [
   {
     name: 'P🐶w Patrol',
-    symbol: '🐶',
+    emoji: '🐶',
   },
   {
     name: 'Li🦁n King',
-    symbol: '🦁',
+    emoji: '🦁',
   },
 ];
 
@@ -23,10 +23,10 @@ for (let i = 0; i < cells.length; i++) {
 function cellClicked() {
   // Check to see whose turn it is
   if (turn % 2 == 0) {
-    event.target.textContent = players[0].symbol;
+    event.target.textContent = players[0].emoji;
     turn++;
   } else if (!(turn % 2 == 0)) {
-    event.target.textContent = players[1].symbol;
+    event.target.textContent = players[1].emoji;
     turn++;
   }
 
