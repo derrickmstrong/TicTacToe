@@ -12,6 +12,7 @@ const players = [
 let turn = 0;
 
 const cells = document.querySelectorAll('.row > div');
+const winner = document.querySelector('#winner');
 
 // Looping through the cells
 for (let i = 0; i < cells.length; i++) {
@@ -22,16 +23,14 @@ for (let i = 0; i < cells.length; i++) {
 function cellClicked() {
   // Check to see whose turn it is
   if (turn % 2 == 0) {
-    // TODO: Remove later, decided to go with emojis instead of change symbol colors event.target.classList.add('red'); 
     event.target.textContent = players[0].symbol;
     turn++;
   } else if (!(turn % 2 == 0)) {
-    // TODO: Remove later, decided to go with emojis instead of change symbol colors event.target.classList.add('blue'); 
     event.target.textContent = players[1].symbol;
     turn++;
   }
 
-  // Check for winner - For the record, there has to be a better way than this SUPER LONG if/else statement - Find a way with an object
+  // Check for winner
   if (
     (cells[0].textContent === '🐶' &&
       cells[1].textContent === '🐶' &&
@@ -59,7 +58,7 @@ function cellClicked() {
       cells[6].textContent === '🐶')
   ) {
     // Announce Winner
-    console.log(`${players[0].name} Wins!!!`);
+    winner.textContent = `${players[0].name} Wins!!!`;
     // Remove click event
     // FIXME: cells.removeEventListener('click', cellClicked); I need to figure out how to get this game to stop accepting clicks and removeEventListener seems like the direction
     // Reset Game Board
@@ -93,7 +92,7 @@ function cellClicked() {
       cells[4].textContent === '🦁' &&
       cells[6].textContent === '🦁')
   ) {
-    console.log(`${players[1].name} Wins!!!`);
+    winner.textContent = `${players[1].name} Wins!!!`;
     // Remove click event
     // FIXME: cells.removeEventListener('click', cellClicked); I need to figure out how to get this game to stop accepting clicks and removeEventListener seems like the direction
     // Reset Game Board
@@ -103,6 +102,3 @@ function cellClicked() {
     }, 3000);
   }
 }
-
-// Notes: Additional way to immediately reset page
-// window.location.reload(true);

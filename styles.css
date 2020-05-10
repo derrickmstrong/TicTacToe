@@ -1,4 +1,6 @@
-body { font-family: monospace; }
+body { 
+  font-family: monospace; 
+}
 
 .row > div {
   float: left;
@@ -36,12 +38,6 @@ body { font-family: monospace; }
   text-align: center;
 }
 
-/* Setup classes for symbol colors but decided to used emoji's instead
-.red {
-  color: red;
+#winner {
+  padding: 2rem;
 }
-
-.blue {
-  color: blue;
-}
-*/
