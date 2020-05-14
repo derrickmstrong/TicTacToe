@@ -6,7 +6,7 @@ body::after {
   content: "";
   background-image: url(./c19.jpg);
   background-size: cover;
-  opacity: 0.3;
+  opacity: 0.05;
   top: 0;
   left: 0;
   bottom: 0;
