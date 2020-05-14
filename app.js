@@ -48,12 +48,13 @@ const resetStyles = {
 };
 
 const readyStyles = {
-  fontSize: '3rem',
+  fontSize: '2rem',
   fontWeight: 'bold',
   margin: '0 auto',
   position: 'relative',
-  left: '5rem',
+  // left: '.5rem',
   color: 'red',
+  width: '300px'
 };
 
 const announceWinnerStyles = {
@@ -64,10 +65,16 @@ const announceWinnerStyles = {
 };
 
 // Ready Statement
-const ready = document.createElement('div');
-ready.textContent = 'READY';
-Object.assign(ready.style, readyStyles);
-document.querySelector('.middle').appendChild(ready);
+function ready() {
+  const ready = document.createElement('div');
+  ready.textContent = 'INSERT COIN 💰';
+  Object.assign(ready.style, readyStyles);
+  document.querySelector('.middle').appendChild(ready);
+  setTimeout(function () {
+    ready.style.display = 'none';
+  }, 2000);
+}
+ready()
 
 // Listen for clicks
 for (let i = 0; i < cells.length; i++) {
@@ -80,7 +87,7 @@ function cellClicked() {
   if (gameOver) {
     cells[i].removeEventListener('click', cellClicked);
   } else if (turn % 2 == 0) {
-    ready.style.display = 'none';
+    
     event.target.textContent = players[0].emoji;
     turn++;
   } else if (!(turn % 2 == 0)) {
