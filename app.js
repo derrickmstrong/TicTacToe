@@ -1,4 +1,10 @@
-// Define Players
+// Define Variables including Players + Winning Combinations
+let turn = 0;
+let gameOver = false;
+
+const cells = document.querySelectorAll('.row > div');
+const winner = document.querySelector('#winner');
+
 const players = [
   {
     name: 'Put Y😷ur Safety First',
@@ -10,7 +16,6 @@ const players = [
   },
 ];
 
-// Define Winning Combinations
 const combo = [
   [0, 1, 2],
   [3, 4, 5],
@@ -21,13 +26,6 @@ const combo = [
   [0, 4, 8],
   [2, 4, 6],
 ];
-
-// Define Variables
-let turn = 0;
-let gameOver = false;
-
-const cells = document.querySelectorAll('.row > div');
-const winner = document.querySelector('#winner');
 
 // Define Styles
 const resetStyles = {
@@ -44,7 +42,7 @@ const resetStyles = {
   padding: '1rem',
   textShadow: '0px 1px 0px #b23e35',
   position: 'relative',
-  top: '-4rem'
+  top: '-4rem',
 };
 
 const insertCoinsStyles = {
@@ -52,9 +50,9 @@ const insertCoinsStyles = {
   fontWeight: 'bold',
   textAlign: 'center',
   position: 'relative',
-  color: 'red',
+  color: '#2B1061',
   width: '300px',
-  paddingTop: '2rem'
+  paddingTop: '2rem',
 };
 
 const announceWinnerStyles = {
@@ -67,29 +65,19 @@ const announceWinnerStyles = {
 };
 
 // insertCoins Statement
-function insertCoins() {
-  const insertCoins = document.createElement('div');
-  insertCoins.textContent = '💰INSERT COIN💰';
-  Object.assign(insertCoins.style, insertCoinsStyles);
-  document.querySelector('#winner').appendChild(insertCoins);
-  setTimeout(function () {
-    insertCoins.style.display = 'none';
-  }, 4000);
-}
-insertCoins()
+insertCoins();
 
-// Listen for clicks
+// Listen for cells clicks
 for (let i = 0; i < cells.length; i++) {
   cells[i].addEventListener('click', cellClicked);
 }
 
 // App Logic
 function cellClicked() {
-  // Check to see whose turn it is AND Check for end of game
+  // Check  for end of game AND player turn
   if (gameOver) {
     cells[i].removeEventListener('click', cellClicked);
   } else if (turn % 2 == 0) {
-    
     event.target.textContent = players[0].emoji;
     turn++;
   } else if (!(turn % 2 == 0)) {
@@ -100,7 +88,7 @@ function cellClicked() {
   // Check if P1 is the winner
   for (let i = 0; i < combo.length; i++) {
     // Check if game is a DRAW
-     /*
+    /*
        FIXME: Figure out why the Draw check is not working properly; Instead of saying Draw Once and add one button its addding 8
       if (
         cells[0].textContent != '' &&
@@ -144,62 +132,59 @@ function cellClicked() {
       cells[combo[i][1]].textContent == players[0].emoji &&
       cells[combo[i][2]].textContent == players[0].emoji
     ) {
-      gameOver = true;
       // Announce Winner
-      const announceWinner = document.createElement('div');
-      announceWinner.textContent = `${players[0].name}`;
-      Object.assign(announceWinner.style, announceWinnerStyles);
-      document.querySelector('#winner').appendChild(announceWinner);
-
+      announce(players[0].name);
       // Reset Game Board
-      const btn = document.querySelector('.btn');
-      const resetBtn = document.createElement('button');
-      resetBtn.textContent = 'TRY AGAIN';
-
-      // Apply resetStyles
-      Object.assign(resetBtn.style, resetStyles);
-
-      // Attach resetBtn to document
-      btn.appendChild(resetBtn);
-
-      resetBtn.addEventListener('click', resetGame);
-
-      function resetGame() {
-        setTimeout(function () {
-          location = '';
-        }, 500);
-      }
+      resetGame();
       // Check if P2 is the winner
     } else if (
       cells[combo[i][0]].textContent == players[1].emoji &&
       cells[combo[i][1]].textContent == players[1].emoji &&
       cells[combo[i][2]].textContent == players[1].emoji
     ) {
-      gameOver = true;
       // Announce Winner
-      const announceWinner = document.createElement('div');
-      announceWinner.textContent = `${players[1].name}`;
-      Object.assign(announceWinner.style, announceWinnerStyles);
-      document.querySelector('#winner').appendChild(announceWinner);
-
+      announce(players[1].name);
       // Reset Game Board
-      const btn = document.querySelector('.btn');
-      const resetBtn = document.createElement('button');
-      resetBtn.textContent = 'TRY AGAIN';
-
-      // Apply resetStyles
-      Object.assign(resetBtn.style, resetStyles);
-
-      // Attach resetBtn to document
-      btn.appendChild(resetBtn);
-
-      resetBtn.addEventListener('click', resetGame);
-
-      function resetGame() {
-        setTimeout(function () {
-          location = '';
-        }, 500);
-      }
+      resetGame();
     }
   }
+}
+
+function insertCoins() {
+  const insertCoins = document.createElement('div');
+  insertCoins.textContent = '💰INSERT COIN💰';
+  Object.assign(insertCoins.style, insertCoinsStyles);
+  document.querySelector('#winner').appendChild(insertCoins);
+  setTimeout(function () {
+    insertCoins.style.display = 'none';
+  }, 4000);
+}
+
+function announce(winner) {
+  gameOver = true;
+  const announceWinner = document.createElement('div');
+  announceWinner.textContent = `${winner}`;
+  Object.assign(announceWinner.style, announceWinnerStyles);
+  document.querySelector('#winner').appendChild(announceWinner);
+}
+
+function resetGame() {
+  const btn = document.querySelector('.btn');
+  const resetBtn = document.createElement('button');
+  resetBtn.textContent = 'TRY AGAIN';
+
+  // Apply resetStyles
+  Object.assign(resetBtn.style, resetStyles);
+
+  // Attach resetBtn to document
+  btn.appendChild(resetBtn);
+
+  resetBtn.addEventListener('click', refreshPage);
+
+}
+
+function refreshPage() {
+  setTimeout(function () {
+    location = '';
+  }, 100);
 }

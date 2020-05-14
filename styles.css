@@ -6,7 +6,7 @@ body::after {
   content: "";
   background-image: url(./c19.jpg);
   background-size: cover;
-  opacity: 0.05;
+  opacity: 0.6;
   top: 0;
   left: 0;
   bottom: 0;
@@ -20,7 +20,7 @@ h1 {
 }
 
 .row > div {
-  background-color: white;
+  background-color: rgba(189, 172, 247, 0.8);
   float: left;
   width: 100px;
   height: 100px;
@@ -54,6 +54,6 @@ h1 {
 
 #board {
   
-  padding-top: 7em;
+  padding-top: 8rem;
   text-align: center;
 }
