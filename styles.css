@@ -2,6 +2,10 @@ body {
   font-family: monospace; 
 }
 
+h1 {
+  font-size: 3em;
+}
+
 .row > div {
   float: left;
   width: 100px;
@@ -36,8 +40,4 @@ body {
 #board {
   padding-top: 3em;
   text-align: center;
-}
-
-#winner {
-  padding: 2rem;
 }
