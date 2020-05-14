@@ -24,6 +24,7 @@ const combo = [
 
 // Define Variables
 let turn = 0;
+let gameOver = false;
 
 const cells = document.querySelectorAll('.row > div');
 const winner = document.querySelector('#winner');
@@ -48,6 +49,7 @@ const resetStyles = {
 
 const readyStyles = {
   fontSize: '3rem',
+  fontWeight: 'bold',
   margin: '0 auto',
   position: 'relative',
   left: '5rem',
@@ -62,7 +64,7 @@ const announceWinnerStyles = {
 };
 
 // Ready Statement
-const ready = document.createElement('h2');
+const ready = document.createElement('div');
 ready.textContent = 'READY';
 Object.assign(ready.style, readyStyles);
 document.querySelector('.middle').appendChild(ready);
@@ -75,57 +77,7 @@ for (let i = 0; i < cells.length; i++) {
 // App Logic
 function cellClicked() {
   // Check to see whose turn it is AND Check for end of game
-  if (
-    turn > 8 ||
-    (cells[0].textContent === '👸🏽' &&
-      cells[1].textContent === '👸🏽' &&
-      cells[2].textContent === '👸🏽') ||
-    (cells[3].textContent === '👸🏽' &&
-      cells[4].textContent === '👸🏽' &&
-      cells[5].textContent === '👸🏽') ||
-    (cells[6].textContent === '👸🏽' &&
-      cells[7].textContent === '👸🏽' &&
-      cells[8].textContent === '👸🏽') ||
-    (cells[0].textContent === '👸🏽' &&
-      cells[3].textContent === '👸🏽' &&
-      cells[6].textContent === '👸🏽') ||
-    (cells[1].textContent === '👸🏽' &&
-      cells[4].textContent === '👸🏽' &&
-      cells[7].textContent === '👸🏽') ||
-    (cells[2].textContent === '👸🏽' &&
-      cells[5].textContent === '👸🏽' &&
-      cells[8].textContent === '👸🏽') ||
-    (cells[0].textContent === '👸🏽' &&
-      cells[4].textContent === '👸🏽' &&
-      cells[8].textContent === '👸🏽') ||
-    (cells[2].textContent === '👸🏽' &&
-      cells[4].textContent === '👸🏽' &&
-      cells[6].textContent === '👸🏽') ||
-    (cells[0].textContent === '🐸' &&
-      cells[1].textContent === '🐸' &&
-      cells[2].textContent === '🐸') ||
-    (cells[3].textContent === '🐸' &&
-      cells[4].textContent === '🐸' &&
-      cells[5].textContent === '🐸') ||
-    (cells[6].textContent === '🐸' &&
-      cells[7].textContent === '🐸' &&
-      cells[8].textContent === '🐸') ||
-    (cells[0].textContent === '🐸' &&
-      cells[3].textContent === '🐸' &&
-      cells[6].textContent === '🐸') ||
-    (cells[1].textContent === '🐸' &&
-      cells[4].textContent === '🐸' &&
-      cells[7].textContent === '🐸') ||
-    (cells[2].textContent === '🐸' &&
-      cells[5].textContent === '🐸' &&
-      cells[8].textContent === '🐸') ||
-    (cells[0].textContent === '🐸' &&
-      cells[4].textContent === '🐸' &&
-      cells[8].textContent === '🐸') ||
-    (cells[2].textContent === '🐸' &&
-      cells[4].textContent === '🐸' &&
-      cells[6].textContent === '🐸')
-  ) {
+  if (gameOver) {
     cells[i].removeEventListener('click', cellClicked);
   } else if (turn % 2 == 0) {
     ready.style.display = 'none';
@@ -138,12 +90,50 @@ function cellClicked() {
 
   // Check if P1 is the winner
   for (let i = 0; i < combo.length; i++) {
+    // Check if game is a DRAW
+    // FIXME: Figure out why the Draw check is not working properly; Instead of saying Draw Once and add one button its addding 8
     if (
+      cells[0].textContent != '' &&
+      cells[1].textContent != '' &&
+      cells[2].textContent != '' &&
+      cells[3].textContent != '' &&
+      cells[4].textContent != '' &&
+      cells[5].textContent != '' &&
+      cells[6].textContent != '' &&
+      cells[7].textContent != '' &&
+      cells[8].textContent != ''
+    ) {
+      gameOver = true;
+      // Announce Winner
+      // const announceWinner = document.createElement('div');
+      // announceWinner.textContent = `DRAW!!!`;
+      // Object.assign(announceWinner.style, announceWinnerStyles);
+      // document.querySelector('#winner').appendChild(announceWinner);
+
+      // Reset Game Board
+      const btn = document.querySelector('.btn');
+      const resetBtn = document.createElement('button');
+      resetBtn.textContent = 'RESET GAME';
+
+      // Apply resetStyles
+      Object.assign(resetBtn.style, resetStyles);
+
+      // Attach resetBtn to document
+      btn.appendChild(resetBtn);
+
+      resetBtn.addEventListener('click', resetGame);
+
+      function resetGame() {
+        setTimeout(function () {
+          location = '';
+        }, 500);
+      }
+    } else if (
       cells[combo[i][0]].textContent == players[0].emoji &&
       cells[combo[i][1]].textContent == players[0].emoji &&
       cells[combo[i][2]].textContent == players[0].emoji
     ) {
-      cells[i].removeEventListener('click', cellClicked);
+      gameOver = true;
       // Announce Winner
       const announceWinner = document.createElement('div');
       announceWinner.textContent = `${players[0].name} Wins`;
@@ -174,51 +164,12 @@ function cellClicked() {
       cells[combo[i][1]].textContent == players[1].emoji &&
       cells[combo[i][2]].textContent == players[1].emoji
     ) {
-      cells[i].removeEventListener('click', cellClicked);
+      gameOver = true;
       // Announce Winner
       const announceWinner = document.createElement('div');
       announceWinner.textContent = `${players[1].name} Wins`;
       Object.assign(announceWinner.style, announceWinnerStyles);
       document.querySelector('#winner').appendChild(announceWinner);
-
-      // Reset Game Board
-      const btn = document.querySelector('.btn');
-      const resetBtn = document.createElement('button');
-      resetBtn.textContent = 'RESET GAME';
-
-      // Apply resetStyles
-      Object.assign(resetBtn.style, resetStyles);
-
-      // Attach resetBtn to document
-      btn.appendChild(resetBtn);
-
-      resetBtn.addEventListener('click', resetGame);
-
-      function resetGame() {
-        setTimeout(function () {
-          location = '';
-        }, 500);
-      }
-    }
-    // Check if game is a DRAW
-    // FIXME: Figure out why the Draw check is not working properly; Instead of saying Draw Once and add one button its addding 8 
-    else if (
-      cells[0].textContent != '' &&
-      cells[1].textContent != '' &&
-      cells[2].textContent != '' &&
-      cells[3].textContent != '' &&
-      cells[4].textContent != '' &&
-      cells[5].textContent != '' &&
-      cells[6].textContent != '' &&
-      cells[7].textContent != '' &&
-      cells[8].textContent != ''
-    ) {
-      cells[i].removeEventListener('click', cellClicked);
-      // Announce Winner
-      // const announceWinner = document.createElement('div');
-      // announceWinner.textContent = `DRAW!!!`;
-      // Object.assign(announceWinner.style, announceWinnerStyles);
-      // document.querySelector('#winner').appendChild(announceWinner);
 
       // Reset Game Board
       const btn = document.querySelector('.btn');
