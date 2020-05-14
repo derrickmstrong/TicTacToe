@@ -1,5 +1,18 @@
 body { 
   font-family: monospace; 
+  color: #2B1061;
+}
+body::after {
+  content: "";
+  background-image: url(./c19.jpg);
+  background-size: cover;
+  opacity: 0.3;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;   
 }
 
 h1 {
@@ -7,6 +20,7 @@ h1 {
 }
 
 .row > div {
+  background-color: white;
   float: left;
   width: 100px;
   height: 100px;
@@ -16,28 +30,30 @@ h1 {
 }
 
 .row {
+  /* background-color: white; */
   clear: both;
   margin: auto;
   width: 302px;
 }
 
 .top {
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid #1E0B5A;
 }
 
 .bottom {
-  border-top: 1px solid #000;
+  border-top: 1px solid #1E0B5A;
 }
 
 .left {
-  border-right: 1px solid #000;
+  border-right: 1px solid #1E0B5A;
 }
 
 .right {
-  border-left: 1px solid #000;
+  border-left: 1px solid #1E0B5A;
 }
 
 #board {
-  padding-top: 3em;
+  
+  padding-top: 7em;
   text-align: center;
 }
