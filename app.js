@@ -1,12 +1,12 @@
 // Define Players
 const players = [
   {
-    name: 'P1',
-    emoji: '👸🏽',
+    name: 'Safety Wins',
+    emoji: '😷',
   },
   {
-    name: 'P2',
-    emoji: '🐸',
+    name: 'Corona Strike Again',
+    emoji: '🦠',
   },
 ];
 
@@ -143,7 +143,7 @@ function cellClicked() {
       gameOver = true;
       // Announce Winner
       const announceWinner = document.createElement('div');
-      announceWinner.textContent = `${players[0].name} Wins`;
+      announceWinner.textContent = `${players[0].name}`;
       Object.assign(announceWinner.style, announceWinnerStyles);
       document.querySelector('#winner').appendChild(announceWinner);
 
@@ -174,7 +174,7 @@ function cellClicked() {
       gameOver = true;
       // Announce Winner
       const announceWinner = document.createElement('div');
-      announceWinner.textContent = `${players[1].name} Wins`;
+      announceWinner.textContent = `${players[1].name}`;
       Object.assign(announceWinner.style, announceWinnerStyles);
       document.querySelector('#winner').appendChild(announceWinner);
 
