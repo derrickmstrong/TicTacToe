@@ -1,11 +1,11 @@
 // Define Players
 const players = [
   {
-    name: 'Safety Wins',
+    name: 'Put S😷fety First',
     emoji: '😷',
   },
   {
-    name: 'Corona Strike Again',
+    name: 'R🦠na Strike Again',
     emoji: '🦠',
   },
 ];
@@ -50,24 +50,23 @@ const resetStyles = {
 const readyStyles = {
   fontSize: '2rem',
   fontWeight: 'bold',
-  margin: '0 auto',
+  textAlign: 'center',
   position: 'relative',
-  // left: '.5rem',
   color: 'red',
   width: '300px'
 };
 
 const announceWinnerStyles = {
   color: 'black',
-  fontSize: '2em',
+  fontSize: '1.15em',
   padding: '.5em',
-  margin: 'auto',
+  textAlign: 'center',
 };
 
 // Ready Statement
 function ready() {
   const ready = document.createElement('div');
-  ready.textContent = 'INSERT COIN 💰';
+  ready.textContent = 'INSERT 💰 COINS';
   Object.assign(ready.style, readyStyles);
   document.querySelector('.middle').appendChild(ready);
   setTimeout(function () {
@@ -120,7 +119,7 @@ function cellClicked() {
       // Reset Game Board
       const btn = document.querySelector('.btn');
       const resetBtn = document.createElement('button');
-      resetBtn.textContent = 'RESET GAME';
+      resetBtn.textContent = 'TRY AGAIN';
 
       // Apply resetStyles
       Object.assign(resetBtn.style, resetStyles);
@@ -150,7 +149,7 @@ function cellClicked() {
       // Reset Game Board
       const btn = document.querySelector('.btn');
       const resetBtn = document.createElement('button');
-      resetBtn.textContent = 'RESET GAME';
+      resetBtn.textContent = 'TRY AGAIN';
 
       // Apply resetStyles
       Object.assign(resetBtn.style, resetStyles);
@@ -181,7 +180,7 @@ function cellClicked() {
       // Reset Game Board
       const btn = document.querySelector('.btn');
       const resetBtn = document.createElement('button');
-      resetBtn.textContent = 'RESET GAME';
+      resetBtn.textContent = 'TRY AGAIN';
 
       // Apply resetStyles
       Object.assign(resetBtn.style, resetStyles);
