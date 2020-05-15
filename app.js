@@ -122,6 +122,23 @@ function chooseTurn() {
 }
 
 function checkWinner() {
+    if (
+      cells[0].textContent != '' &&
+      cells[1].textContent != '' &&
+      cells[2].textContent != '' &&
+      cells[3].textContent != '' &&
+      cells[4].textContent != '' &&
+      cells[5].textContent != '' &&
+      cells[6].textContent != '' &&
+      cells[7].textContent != '' &&
+      cells[8].textContent != '' 
+    ) {
+      // Announce Winner
+      announce(players[2].name);
+      // Reset Game Board
+      resetGame();
+    }
+
   for (let i = 0; i < combo.length; i++) {
     if (
       cells[combo[i][0]].textContent == players[0].emoji &&
