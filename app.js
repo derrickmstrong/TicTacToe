@@ -133,31 +133,7 @@ function chooseTurn() {
 }
 
 function checkWinner() {
-  for (let i = 0; i < winningCombo.length; i++) {
-  // Check for draw
-  if (
-    cells[0].textContent != '' &&
-    cells[1].textContent != '' &&
-    cells[2].textContent != '' &&
-    cells[3].textContent != '' &&
-    cells[4].textContent != '' &&
-    cells[5].textContent != '' &&
-    cells[6].textContent != '' &&
-    cells[7].textContent != '' &&
-    cells[8].textContent != '' &&
-    cells[winningCombo[i][0]].textContent != players[0].emoji &&
-    cells[winningCombo[i][1]].textContent != players[0].emoji &&
-    cells[winningCombo[i][2]].textContent != players[0].emoji &&
-    cells[winningCombo[i][0]].textContent != players[1].emoji &&
-    cells[winningCombo[i][1]].textContent != players[2].emoji &&
-    cells[winningCombo[i][2]].textContent != players[3].emoji
-  ) {
-    // Announce draw
-    announce(players[2].name);
-    // Reset game board
-    resetGame();
-  }
-  }
+  
   
   for (let i = 0; i < winningCombo.length; i++) {
     // Check if P1 is the winner
@@ -181,6 +157,30 @@ function checkWinner() {
       // Reset game board
       resetGame();
     }
+  }
+
+  // Check for draw
+  if (
+    cells[0].textContent != '' &&
+    cells[1].textContent != '' &&
+    cells[2].textContent != '' &&
+    cells[3].textContent != '' &&
+    cells[4].textContent != '' &&
+    cells[5].textContent != '' &&
+    cells[6].textContent != '' &&
+    cells[7].textContent != '' &&
+    cells[8].textContent != '' &&
+    cells[winningCombo[i][0]].textContent != players[0].emoji &&
+    cells[winningCombo[i][1]].textContent != players[0].emoji &&
+    cells[winningCombo[i][2]].textContent != players[0].emoji &&
+    cells[winningCombo[i][0]].textContent != players[1].emoji &&
+    cells[winningCombo[i][1]].textContent != players[2].emoji &&
+    cells[winningCombo[i][2]].textContent != players[3].emoji
+  ) {
+    // Announce draw
+    announce(players[2].name);
+    // Reset game board
+    resetGame();
   }
 }
 
