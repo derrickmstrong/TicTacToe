@@ -133,12 +133,24 @@ function chooseTurn() {
 }
 
 function checkWinner() {
+  // Check if P1 is the winner
   for (let i = 0; i < winningCombo.length; i++) {
-    // Check if P1 is the winner
     if (
+      (cells[winningCombo[i][0]].textContent == players[0].emoji &&
+      cells[winningCombo[i][1]].textContent == players[0].emoji &&
+      cells[winningCombo[i][2]].textContent == players[0].emoji) ||
+      (cells[0].textContent != '' &&
+      cells[1].textContent != '' &&
+      cells[2].textContent != '' &&
+      cells[3].textContent != '' &&
+      cells[4].textContent != '' &&
+      cells[5].textContent != '' &&
+      cells[6].textContent != '' &&
+      cells[7].textContent != '' &&
+      cells[8].textContent != '' &&
       cells[winningCombo[i][0]].textContent == players[0].emoji &&
       cells[winningCombo[i][1]].textContent == players[0].emoji &&
-      cells[winningCombo[i][2]].textContent == players[0].emoji
+      cells[winningCombo[i][2]].textContent == players[0].emoji)
     ) {
       // Announce P1 winner
       announce(players[0].name);
@@ -156,8 +168,17 @@ function checkWinner() {
       // Reset game board
       resetGame();
       break;
-    } else if (
-      cells[0].textContent != '' &&
+    } else {
+      announceDraw();
+      break;
+    }  
+  }
+}
+
+function announceDraw() {
+  // Check for Draw
+    if (
+      (cells[0].textContent != '' &&
       cells[1].textContent != '' &&
       cells[2].textContent != '' &&
       cells[3].textContent != '' &&
@@ -165,36 +186,14 @@ function checkWinner() {
       cells[5].textContent != '' &&
       cells[6].textContent != '' &&
       cells[7].textContent != '' &&
-      cells[8].textContent != ''
-    ) {
+      cells[8].textContent != '' ))
+       {
       // Announce draw
       announce(players[2].name);
       // Reset game board
       resetGame();
-      break;
+      
     }
-  }
-}
-
-function announceDraw() {
-  // Check for draw
-  // FIXME: On Win on final play it will display Winner and DRAW
-  // if (
-  //   cells[0].textContent != '' &&
-  //   cells[1].textContent != '' &&
-  //   cells[2].textContent != '' &&
-  //   cells[3].textContent != '' &&
-  //   cells[4].textContent != '' &&
-  //   cells[5].textContent != '' &&
-  //   cells[6].textContent != '' &&
-  //   cells[7].textContent != '' &&
-  //   cells[8].textContent != ''
-  // ) {
-  //   // Announce draw
-  //   announce(players[2].name);
-  //   // Reset game board
-  //   resetGame();
-  // }
 }
 
 function announce(winner) {
