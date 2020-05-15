@@ -160,6 +160,7 @@ function checkWinner() {
   }
 
   // Check for draw
+  // FIXME: On Win on final play it will display Winner and DRAW 
   if (
     cells[0].textContent != '' &&
     cells[1].textContent != '' &&
