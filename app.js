@@ -3,7 +3,6 @@ let turn = 0;
 let gameOver = false;
 
 const cells = document.querySelectorAll('.row > div');
-console.log(cells);
 const winner = document.querySelector('#winner');
 
 const players = [
@@ -16,14 +15,14 @@ const players = [
     emoji: '🍄',
   },
   {
-    name: 'DRAW',
-    emoji: 'D',
+    name: '🎲🎲 DRAW 🎲🎲',
+    emoji: '🎲',
   },
 ];
 
 let player = players[0].emoji;
 
-const combo = [
+const winningCombo = [
   [0, 1, 2],
   [3, 4, 5],
   [6, 7, 8],
@@ -69,16 +68,24 @@ const announceWinnerStyles = {
   textAlign: 'center',
   position: 'relative',
   top: '-11.5rem',
-  padding: '1rem'
+  padding: '1rem',
 };
+
+// Set audio volume
+audioVolume(0.5);
 
 // insertCoins Statement
 insertCoins();
 
 // Listen for cells clicks
-isCellClicked()
+isCellClicked();
 
 // Functions
+function audioVolume(num) {
+  const audio = document.querySelector('#mario');
+  audio.volume = num;
+}
+
 function insertCoins() {
   const insertCoins = document.createElement('div');
   insertCoins.textContent = '💰INSERT COIN💰';
@@ -109,9 +116,12 @@ function isGameOver() {
 
 function chooseTurn() {
   // Check to see if the cells is empty
-  if (event.target.textContent === players[0].emoji || event.target.textContent === players[1].emoji) {
-      return;
-    } 
+  if (
+    event.target.textContent === players[0].emoji ||
+    event.target.textContent === players[1].emoji
+  ) {
+    return;
+  }
   // Alternate Turns
   event.target.textContent = player;
   if (player == players[0].emoji) {
@@ -122,28 +132,28 @@ function chooseTurn() {
 }
 
 function checkWinner() {
-    if (
-      cells[0].textContent != '' &&
-      cells[1].textContent != '' &&
-      cells[2].textContent != '' &&
-      cells[3].textContent != '' &&
-      cells[4].textContent != '' &&
-      cells[5].textContent != '' &&
-      cells[6].textContent != '' &&
-      cells[7].textContent != '' &&
-      cells[8].textContent != '' 
-    ) {
-      // Announce Winner
-      announce(players[2].name);
-      // Reset Game Board
-      resetGame();
-    }
+  if (
+    cells[0].textContent != '' &&
+    cells[1].textContent != '' &&
+    cells[2].textContent != '' &&
+    cells[3].textContent != '' &&
+    cells[4].textContent != '' &&
+    cells[5].textContent != '' &&
+    cells[6].textContent != '' &&
+    cells[7].textContent != '' &&
+    cells[8].textContent != ''
+  ) {
+    // Announce Winner
+    announce(players[2].name);
+    // Reset Game Board
+    resetGame();
+  }
 
-  for (let i = 0; i < combo.length; i++) {
+  for (let i = 0; i < winningCombo.length; i++) {
     if (
-      cells[combo[i][0]].textContent == players[0].emoji &&
-      cells[combo[i][1]].textContent == players[0].emoji &&
-      cells[combo[i][2]].textContent == players[0].emoji
+      cells[winningCombo[i][0]].textContent == players[0].emoji &&
+      cells[winningCombo[i][1]].textContent == players[0].emoji &&
+      cells[winningCombo[i][2]].textContent == players[0].emoji
     ) {
       // Announce Winner
       announce(players[0].name);
@@ -151,9 +161,9 @@ function checkWinner() {
       resetGame();
       // Check if P2 is the winner
     } else if (
-      cells[combo[i][0]].textContent == players[1].emoji &&
-      cells[combo[i][1]].textContent == players[1].emoji &&
-      cells[combo[i][2]].textContent == players[1].emoji
+      cells[winningCombo[i][0]].textContent == players[1].emoji &&
+      cells[winningCombo[i][1]].textContent == players[1].emoji &&
+      cells[winningCombo[i][2]].textContent == players[1].emoji
     ) {
       // Announce Winner
       announce(players[1].name);
@@ -187,10 +197,10 @@ function resetGame() {
 
 function refreshPage() {
   for (const cell of cells) {
-    cell.textContent = ''
+    cell.textContent = '';
   }
-  winner.remove()
-  btn.remove()
+  winner.remove();
+  btn.remove();
   setTimeout(function () {
     location = '';
   }, 1000);
