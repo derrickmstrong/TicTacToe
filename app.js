@@ -1,6 +1,4 @@
 // Define Variables including Players + Winning Combinations
-let gameOver = false;
-
 const cells = document.querySelectorAll('.row > div');
 const winner = document.querySelector('#winner');
 
@@ -20,6 +18,8 @@ const players = [
 ];
 
 let player = players[0].emoji;
+
+let gameOver = false;
 
 const winningCombo = [
   [0, 1, 2],
@@ -133,6 +133,7 @@ function chooseTurn() {
 }
 
 function checkWinner() {
+  for (let i = 0; i < winningCombo.length; i++) {
   // Check for draw
   if (
     cells[0].textContent != '' &&
@@ -143,14 +144,21 @@ function checkWinner() {
     cells[5].textContent != '' &&
     cells[6].textContent != '' &&
     cells[7].textContent != '' &&
-    cells[8].textContent != ''
+    cells[8].textContent != '' &&
+    cells[winningCombo[i][0]].textContent != players[0].emoji &&
+    cells[winningCombo[i][1]].textContent != players[0].emoji &&
+    cells[winningCombo[i][2]].textContent != players[0].emoji &&
+    cells[winningCombo[i][0]].textContent != players[1].emoji &&
+    cells[winningCombo[i][1]].textContent != players[2].emoji &&
+    cells[winningCombo[i][2]].textContent != players[3].emoji
   ) {
     // Announce draw
     announce(players[2].name);
     // Reset game board
     resetGame();
   }
-
+  }
+  
   for (let i = 0; i < winningCombo.length; i++) {
     // Check if P1 is the winner
     if (
