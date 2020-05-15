@@ -144,7 +144,8 @@ function checkWinner() {
     ) {
       // Announce P1 winner
       announce(players[0].name);
-      
+      // Reset game board
+      resetGame();
       // Check if P2 is the winner
     } else if (
       cells[winningCombo[i][0]].textContent == players[1].emoji &&
@@ -153,7 +154,8 @@ function checkWinner() {
     ) {
       // Announce P2 winner
       announce(players[1].name);
-      
+      // Reset game board
+      resetGame();
     }
   }
 
@@ -172,10 +174,9 @@ function checkWinner() {
   ) {
     // Announce draw
     announce(players[2].name);
-  }
-  
-  // Reset game board
+    // Reset game board
     resetGame();
+  }
 }
 
 function announce(winner) {
