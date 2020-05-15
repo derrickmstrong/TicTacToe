@@ -8,12 +8,12 @@ const winner = document.querySelector('#winner');
 
 const players = [
   {
-    name: 'Put Y😷ur Safety First',
-    emoji: '😷',
+    name: 'Fake Princess Wins',
+    emoji: '👸',
   },
   {
-    name: 'R🦠na Strikes Again',
-    emoji: '🦠',
+    name: 'Fake Toad Wins!',
+    emoji: '🍄',
   },
   {
     name: 'DRAW',
@@ -71,21 +71,11 @@ const announceWinnerStyles = {
   top: '-11.5rem',
 };
 
-
-// Listen for cells clicks
-for (let i = 0; i < cells.length; i++) {
-  cells[i].addEventListener('click', cellClicked);
-}
-
 // insertCoins Statement
 insertCoins();
 
-// App Logic
-function cellClicked() {
-  isGameOver()
-  chooseTurn()
-  checkWinner()  
-}
+// Listen for cells clicks
+isCellClicked()
 
 // Functions
 function insertCoins() {
@@ -98,13 +88,30 @@ function insertCoins() {
   }, 4000);
 }
 
+function isCellClicked() {
+  for (let i = 0; i < cells.length; i++) {
+    cells[i].addEventListener('click', cellClicked);
+  }
+}
+
+function cellClicked() {
+  isGameOver();
+  chooseTurn();
+  checkWinner();
+}
+
+function isGameOver() {
+  if (gameOver) {
+    cells[i].removeEventListener('click', cellClicked);
+  }
+}
+
 function chooseTurn() {
-  // Check to see if anything is in the cells already
+  // Check to see if the cells is empty
   if (event.target.textContent === players[0].emoji || event.target.textContent === players[1].emoji) {
       return;
     } 
-  
-  // Alternate Player
+  // Alternate Turns
   event.target.textContent = player;
   if (player == players[0].emoji) {
     player = players[1].emoji;
@@ -138,12 +145,6 @@ function checkWinner() {
   }
 }
 
-function isGameOver() {
-  if (gameOver) {
-    cells[i].removeEventListener('click', cellClicked);
-  } 
-}
-
 function announce(winner) {
   gameOver = true;
   const announceWinner = document.createElement('div');
@@ -153,7 +154,7 @@ function announce(winner) {
 }
 
 function resetGame() {
-  const btn = document.querySelector('.btn');
+  const btn = document.querySelector('#btn');
   const resetBtn = document.createElement('button');
   resetBtn.textContent = 'TRY AGAIN';
 
@@ -167,9 +168,12 @@ function resetGame() {
 }
 
 function refreshPage() {
+  for (const cell of cells) {
+    cell.textContent = ''
+  }
+  winner.remove()
+  btn.remove()
   setTimeout(function () {
     location = '';
-  }, 100);
-
-  //TODO: Set the textContent for all of the cells to empty instead of doing a page reset ie. cells[0].textContent = ""
+  }, 1000);
 }

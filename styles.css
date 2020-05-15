@@ -4,9 +4,9 @@ body {
 }
 body::after {
   content: "";
-  background-image: url(./c19.jpg);
+  background-image: url(./supermario.jpg);
   background-size: cover;
-  opacity: 0.6;
+  opacity: 1;
   top: 0;
   left: 0;
   bottom: 0;
@@ -20,7 +20,7 @@ h1 {
 }
 
 .row > div {
-  background-color: rgba(189, 172, 247, 0.8);
+  background-color: rgba(189, 172, 247, 0.3);
   float: left;
   width: 100px;
   height: 100px;
