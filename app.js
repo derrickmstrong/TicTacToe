@@ -79,11 +79,6 @@ insertCoins();
 isCellClicked()
 
 // Functions
-// function playAudio() {
-//   const audio = new Audio("supermario.mp3")
-//   audio.play
-// }
-
 function insertCoins() {
   const insertCoins = document.createElement('div');
   insertCoins.textContent = '💰INSERT COIN💰';
