@@ -2,6 +2,7 @@ body {
   font-family: monospace; 
   color: #2B1061;
 }
+
 body::after {
   content: "";
   background-image: url(./supermario.jpg);
@@ -13,7 +14,7 @@ body::after {
   right: 0;
   position: absolute;
   z-index: -1;   
-}
+} 
 
 h1 {
   font-size: 3em;
@@ -53,7 +54,6 @@ h1 {
 }
 
 #board {
-  
   padding-top: 8rem;
   text-align: center;
 }

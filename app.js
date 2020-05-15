@@ -8,11 +8,11 @@ const winner = document.querySelector('#winner');
 
 const players = [
   {
-    name: 'Fake Princess Wins',
+    name: '👸👸 Wins 👸👸',
     emoji: '👸',
   },
   {
-    name: 'Fake Toad Wins!',
+    name: '🍄🍄 Wins 🍄🍄',
     emoji: '🍄',
   },
   {
@@ -69,6 +69,7 @@ const announceWinnerStyles = {
   textAlign: 'center',
   position: 'relative',
   top: '-11.5rem',
+  padding: '1rem'
 };
 
 // insertCoins Statement
@@ -78,6 +79,11 @@ insertCoins();
 isCellClicked()
 
 // Functions
+// function playAudio() {
+//   const audio = new Audio("supermario.mp3")
+//   audio.play
+// }
+
 function insertCoins() {
   const insertCoins = document.createElement('div');
   insertCoins.textContent = '💰INSERT COIN💰';
@@ -156,7 +162,7 @@ function announce(winner) {
 function resetGame() {
   const btn = document.querySelector('#btn');
   const resetBtn = document.createElement('button');
-  resetBtn.textContent = 'TRY AGAIN';
+  resetBtn.textContent = 'PLAY AGAIN';
 
   // Apply resetStyles
   Object.assign(resetBtn.style, resetStyles);
