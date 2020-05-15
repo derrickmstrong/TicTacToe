@@ -1,10 +1,10 @@
-body { 
-  font-family: monospace; 
-  color: #2B1061;
+body {
+  font-family: monospace;
+  color: #2b1061;
 }
 
 body::after {
-  content: "";
+  content: '';
   background-image: url(./supermario.jpg);
   background-size: cover;
   opacity: 1;
@@ -13,8 +13,8 @@ body::after {
   bottom: 0;
   right: 0;
   position: fixed;
-  z-index: -1;   
-} 
+  z-index: -1;
+}
 
 h1 {
   font-size: 3em;
@@ -38,19 +38,19 @@ h1 {
 }
 
 .top {
-  border-bottom: 1px solid #1E0B5A;
+  border-bottom: 1px solid #1e0b5a;
 }
 
 .bottom {
-  border-top: 1px solid #1E0B5A;
+  border-top: 1px solid #1e0b5a;
 }
 
 .left {
-  border-right: 1px solid #1E0B5A;
+  border-right: 1px solid #1e0b5a;
 }
 
 .right {
-  border-left: 1px solid #1E0B5A;
+  border-left: 1px solid #1e0b5a;
 }
 
 #board {
