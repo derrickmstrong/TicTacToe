@@ -169,13 +169,7 @@ function checkWinner() {
     cells[5].textContent != '' &&
     cells[6].textContent != '' &&
     cells[7].textContent != '' &&
-    cells[8].textContent != '' &&
-    cells[winningCombo[i][0]].textContent != players[0].emoji &&
-    cells[winningCombo[i][1]].textContent != players[0].emoji &&
-    cells[winningCombo[i][2]].textContent != players[0].emoji &&
-    cells[winningCombo[i][0]].textContent != players[1].emoji &&
-    cells[winningCombo[i][1]].textContent != players[2].emoji &&
-    cells[winningCombo[i][2]].textContent != players[3].emoji
+    cells[8].textContent != ''
   ) {
     // Announce draw
     announce(players[2].name);
