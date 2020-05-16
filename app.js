@@ -94,7 +94,7 @@ function insertCoins() {
   // Remove div
   setTimeout(function () {
     insertCoins.style.display = 'none';
-  }, 4000);
+  }, 2500);
 }
 
 function isCellClicked() {
@@ -126,16 +126,30 @@ function chooseTurn() {
   // Alternate turns between players
   event.target.textContent = player;
   if (player == players[0].emoji) {
-    player = players[1].emoji;
+    return (player = players[1].emoji);
   } else {
-    player = players[0].emoji;
+    return (player = players[0].emoji);
   }
 }
 
 function checkWinner() {
   // Check if P1 is the winner
   for (let i = 0; i < winningCombo.length; i++) {
-    if (
+    if (isBoardFilledAndWinner(players[0].emoji)) {
+      // Announce draw
+      announce(players[0].name);
+      // Reset game board
+      resetGame();
+      break;
+    }
+    else if (isBoardFilledAndWinner(player[1].emoji)) {
+      // Announce draw
+      announce(players[1].name);
+      // Reset game board
+      resetGame();
+      break;
+    }
+    else if (
       cells[winningCombo[i][0]].textContent == players[0].emoji &&
       cells[winningCombo[i][1]].textContent == players[0].emoji &&
       cells[winningCombo[i][2]].textContent == players[0].emoji
@@ -156,29 +170,155 @@ function checkWinner() {
       // Reset game board
       resetGame();
       break;
-    } 
-  }
-      announceDraw();
-}
-
-function announceDraw() {
-  // Check for Draw
-    if (
-      cells[0].textContent != '' &&
-      cells[1].textContent != '' &&
-      cells[2].textContent != '' &&
-      cells[3].textContent != '' &&
-      cells[4].textContent != '' &&
-      cells[5].textContent != '' &&
-      cells[6].textContent != '' &&
-      cells[7].textContent != '' &&
-      cells[8].textContent != '' 
-    ) {
+    } else if (checkDraw()) {
       // Announce draw
       announce(players[2].name);
       // Reset game board
       resetGame();
+      break;
     }
+  }
+}
+
+  function isBoardFilledAndWinner(player) {
+    // Check for Draw and Winner
+    if (
+      (cells[0].textContent != '' &&
+        cells[1].textContent != '' &&
+        cells[2].textContent != '' &&
+        cells[3].textContent != '' &&
+        cells[4].textContent != '' &&
+        cells[5].textContent != '' &&
+        cells[6].textContent != '' &&
+        cells[7].textContent != '' &&
+        cells[8].textContent != '' &&
+        cells[0].textContent == player &&
+        cells[1].textContent == player &&
+        cells[2].textContent == player) ||
+      (cells[0].textContent != '' &&
+        cells[1].textContent != '' &&
+        cells[2].textContent != '' &&
+        cells[3].textContent != '' &&
+        cells[4].textContent != '' &&
+        cells[5].textContent != '' &&
+        cells[6].textContent != '' &&
+        cells[7].textContent != '' &&
+        cells[8].textContent != '' &&
+        cells[3].textContent == player &&
+        cells[4].textContent == player &&
+        cells[5].textContent == player) ||
+      (cells[0].textContent != '' &&
+        cells[1].textContent != '' &&
+        cells[2].textContent != '' &&
+        cells[3].textContent != '' &&
+        cells[4].textContent != '' &&
+        cells[5].textContent != '' &&
+        cells[6].textContent != '' &&
+        cells[7].textContent != '' &&
+        cells[8].textContent != '' &&
+        cells[6].textContent == player &&
+        cells[7].textContent == player &&
+        cells[8].textContent == player) ||
+      (cells[0].textContent != '' &&
+        cells[1].textContent != '' &&
+        cells[2].textContent != '' &&
+        cells[3].textContent != '' &&
+        cells[4].textContent != '' &&
+        cells[5].textContent != '' &&
+        cells[6].textContent != '' &&
+        cells[7].textContent != '' &&
+        cells[8].textContent != '' &&
+        cells[0].textContent == player &&
+        cells[3].textContent == player &&
+        cells[6].textContent == player) ||
+      (cells[0].textContent != '' &&
+        cells[1].textContent != '' &&
+        cells[2].textContent != '' &&
+        cells[3].textContent != '' &&
+        cells[4].textContent != '' &&
+        cells[5].textContent != '' &&
+        cells[6].textContent != '' &&
+        cells[7].textContent != '' &&
+        cells[8].textContent != '' &&
+        cells[1].textContent == player &&
+        cells[4].textContent == player &&
+        cells[7].textContent == player) ||
+      (cells[0].textContent != '' &&
+        cells[1].textContent != '' &&
+        cells[2].textContent != '' &&
+        cells[3].textContent != '' &&
+        cells[4].textContent != '' &&
+        cells[5].textContent != '' &&
+        cells[6].textContent != '' &&
+        cells[7].textContent != '' &&
+        cells[8].textContent != '' &&
+        cells[2].textContent == player &&
+        cells[5].textContent == player &&
+        cells[8].textContent == player) ||
+      (cells[0].textContent != '' &&
+        cells[1].textContent != '' &&
+        cells[2].textContent != '' &&
+        cells[3].textContent != '' &&
+        cells[4].textContent != '' &&
+        cells[5].textContent != '' &&
+        cells[6].textContent != '' &&
+        cells[7].textContent != '' &&
+        cells[8].textContent != '' &&
+        cells[0].textContent == player &&
+        cells[4].textContent == player &&
+        cells[8].textContent == player) ||
+      (cells[0].textContent != '' &&
+        cells[1].textContent != '' &&
+        cells[2].textContent != '' &&
+        cells[3].textContent != '' &&
+        cells[4].textContent != '' &&
+        cells[5].textContent != '' &&
+        cells[6].textContent != '' &&
+        cells[7].textContent != '' &&
+        cells[8].textContent != '' &&
+        cells[2].textContent == player &&
+        cells[4].textContent == player &&
+        cells[6].textContent == player)
+    ) {
+      return true;
+    }
+  };
+
+function checkDraw() {
+  // Check for Draw
+  if (
+    cells[0].textContent != '' &&
+    cells[1].textContent != '' &&
+    cells[2].textContent != '' &&
+    cells[3].textContent != '' &&
+    cells[4].textContent != '' &&
+    cells[5].textContent != '' &&
+    cells[6].textContent != '' &&
+    cells[7].textContent != '' &&
+    cells[8].textContent != ''
+  ) {
+    return true;
+  }
+}
+
+function announceDraw() {
+  // Check for Draw
+  if (
+    cells[0].textContent != '' &&
+    cells[1].textContent != '' &&
+    cells[2].textContent != '' &&
+    cells[3].textContent != '' &&
+    cells[4].textContent != '' &&
+    cells[5].textContent != '' &&
+    cells[6].textContent != '' &&
+    cells[7].textContent != '' &&
+    cells[8].textContent != ''
+  ) {
+    // Announce draw
+    announce(players[2].name);
+    // Reset game board
+    resetGame();
+  }
 }
 
 function announce(winner) {
