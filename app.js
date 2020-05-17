@@ -338,16 +338,14 @@ function resetGame() {
   // Attach resetBtn to document
   btn.appendChild(resetBtn);
 
-  resetBtn.addEventListener('click', refreshPage);
+  resetBtn.addEventListener('click', clearBoard);
 }
 
-function refreshPage() {
+function clearBoard() {
   for (const cell of cells) {
     cell.textContent = '';
   }
   winner.remove();
   btn.remove();
-  setTimeout(function () {
-    location = '';
-  }, 1000);
+  location.reload();
 }
