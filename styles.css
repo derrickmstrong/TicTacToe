@@ -53,6 +53,10 @@ h1 {
   border-left: 1px solid #1e0b5a;
 }
 
+.highlight:hover {
+  background-color: rgba(189, 172, 247, 0.6);;
+}
+
 #board {
   padding-top: 8rem;
   text-align: center;
