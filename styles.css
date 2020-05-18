@@ -30,18 +30,12 @@ h1 {
   line-height: 7rem;
 }
 
-.row :hover {
-  background-color: rgba(189, 172, 247, 0.6);
-}
-
 .row {
   /* background-color: white; */
   clear: both;
   margin: auto;
   width: 302px;
 }
-
-
 
 .top {
   border-bottom: 1px solid #1e0b5a;
